@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot2048", "Bot2048\Bot2048.csproj", "{C84B10B7-1E96-4025-B1EE-A8EBFB4CF2A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C84B10B7-1E96-4025-B1EE-A8EBFB4CF2A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C84B10B7-1E96-4025-B1EE-A8EBFB4CF2A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C84B10B7-1E96-4025-B1EE-A8EBFB4CF2A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C84B10B7-1E96-4025-B1EE-A8EBFB4CF2A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5124D2E-7678-4C42-B34E-64D7DF59D8B7}
+	EndGlobalSection
+EndGlobal
