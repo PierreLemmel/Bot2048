@@ -6,6 +6,7 @@ namespace Bot2048.Automating
     {
         public override void Load()
         {
+            Bind<IAutomatingControler>().To<AutomatingControler>();
             Bind<IWebDriverFactory>().To<WebDriverFactory>();
         }
     }

@@ -6,9 +6,9 @@ namespace Bot2048.Logic
     {
         public override void Load()
         {
+            Bind<IDecisionMaker>().To<PriorityDecisionMaker>();
             Bind<IGameAnalyzer>().To<GameAnalyzer>();
-
-            Bind<IDecisionMaker>().To<RandomDecisionMaker>();
+            Bind<IGridUpdater>().To<GridUpdater>();
         }
     }
 }

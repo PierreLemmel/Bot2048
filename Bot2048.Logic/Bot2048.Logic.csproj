@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bot2048.Core\Bot2048.Core.csproj" />
     <ProjectReference Include="..\Bot2048.Model\Bot2048.Model.csproj" />
   </ItemGroup>
 

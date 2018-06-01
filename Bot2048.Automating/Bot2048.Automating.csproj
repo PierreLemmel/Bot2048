@@ -7,11 +7,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.0" />
     <PackageReference Include="Ninject" Version="3.3.4" />
+    <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.20.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.12.1" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="2.39.0" />
+    <PackageReference Include="Selenium.WebDriver.IEDriver" Version="3.12.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Bot2048.Core\Bot2048.Core.csproj" />
+    <ProjectReference Include="..\Bot2048.Model\Bot2048.Model.csproj" />
   </ItemGroup>
 
 </Project>

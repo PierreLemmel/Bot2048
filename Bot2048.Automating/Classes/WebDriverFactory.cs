@@ -4,7 +4,9 @@ using Bot2048.Core;
 using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Opera;
 
 namespace Bot2048.Automating
@@ -22,17 +24,24 @@ namespace Bot2048.Automating
 
         private readonly IConfiguration configuration;
 
-        private IReadOnlyDictionary<string, Func<IWebDriver>> driverFactoriesMap =
-            new Dictionary<string, Func<IWebDriver>>(StringComparer.InvariantCultureIgnoreCase)
-        {
-
-        };
+        private IReadOnlyDictionary<string, Func<IWebDriver>> driverFactoriesMap;
 
         public WebDriverFactory(IConfiguration config)
         {
-            if (config is null) throw new ArgumentNullException(nameof(config));
-        }
+            Check.NotNull(config, nameof(config));
 
+            driverFactoriesMap = new Dictionary<string, Func<IWebDriver>>(StringComparer.InvariantCultureIgnoreCase)
+            {
+                { Browsers.Chrome, BuildChromeDriver },
+                { Browsers.Opera, BuildOperaDriver },
+                { Browsers.Firefox, BuildFirefoxDriver },
+                { Browsers.Edge, BuildEdgeDriver },
+                { Browsers.InternetExplorer, BuildIEDriver },
+            };
+
+            configuration = config;
+        }
+        
         public IWebDriver BuildDriver()
         {
             string browser = configuration["browser"];
@@ -43,19 +52,10 @@ namespace Bot2048.Automating
             return driver;
         }
 
-        private IWebDriver BuildOperaDriver()
-        {
-            return new OperaDriver();
-        }
-
-        private IWebDriver BuildChromeDriver()
-        {
-            return new ChromeDriver();
-        }
-
-        private IWebDriver BuildFirefoxDriver()
-        {
-            return new FirefoxDriver();
-        }
+        private IWebDriver BuildOperaDriver() => new OperaDriver();
+        private IWebDriver BuildChromeDriver() => new ChromeDriver();
+        private IWebDriver BuildFirefoxDriver() => new FirefoxDriver();
+        private IWebDriver BuildEdgeDriver() => new EdgeDriver();
+        private IWebDriver BuildIEDriver() => new InternetExplorerDriver();
     }
 }

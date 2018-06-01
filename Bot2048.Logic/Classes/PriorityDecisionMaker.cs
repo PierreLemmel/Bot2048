@@ -1,4 +1,5 @@
 ﻿using System;
+using Bot2048.Core;
 using Bot2048.Model;
 
 namespace Bot2048.Logic
@@ -16,7 +17,7 @@ namespace Bot2048.Logic
 
         public PriorityDecisionMaker(IGameAnalyzer analyzer)
         {
-            if (analyzer is null) throw new ArgumentNullException(nameof(analyzer));
+            Check.NotNull(analyzer, nameof(analyzer));
 
             gameAnalyzer = analyzer;
         }
