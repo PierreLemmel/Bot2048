@@ -42,6 +42,7 @@ namespace Bot2048
                         gridUpdater.UpdateGrid(grid, updateInputs);
 
                         Direction nextDirection = decisionMaker.ChoseDirection(grid);
+                        Print($"Moving {nextDirection}");
                         await controler.NextStep(nextDirection);
 
                         watch.Stop();

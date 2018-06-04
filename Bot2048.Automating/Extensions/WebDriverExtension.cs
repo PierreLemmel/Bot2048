@@ -13,7 +13,7 @@ namespace Bot2048.Automating
         {
             Check.NotNull(webDriver, nameof(webDriver));
 
-            while (webDriver.IsDocumentReady())
+            while (!webDriver.IsDocumentReady())
                 await Task.Delay(100);
         }
 

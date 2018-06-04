@@ -13,6 +13,8 @@ namespace Bot2048.Automating
         private readonly IWebDriver webDriver;
         private readonly IConfiguration configuration;
 
+        private IWebElement tileContainer;
+
         private IReadOnlyDictionary<Direction, string> directionKeyMap = new Dictionary<Direction, string>()
         {
             { Direction.Left, Keys.ArrowLeft },
@@ -36,14 +38,17 @@ namespace Bot2048.Automating
             webDriver.Navigate().GoToUrl(url);
 
             await webDriver.AwaitDocumentReady();
+
+            tileContainer = webDriver.FindElement(By.CssSelector("div.tile-container"));
         }
 
         public async Task NextStep(Direction direction)
         {
+            IWebElement gridContainer = webDriver.FindElement(By.CssSelector("body"));
+
             string key = directionKeyMap.GetValueOrDefault(direction, "");
 
-            Actions move = new Actions(webDriver);
-            move.SendKeys(key);
+            gridContainer.SendKeys(key);
 
             await Task.Delay(200);
         }
@@ -71,7 +76,7 @@ namespace Bot2048.Automating
 
         public IEnumerable<GridUpdateInput> ReadGridState()
         {
-            IEnumerable<IWebElement> tiles = webDriver.FindElements(By.CssSelector(".tile-container div.tile"));
+            IEnumerable<IWebElement> tiles = tileContainer.FindElements(By.CssSelector("div.tile"));
 
             ICollection<GridUpdateInput> inputs = new List<GridUpdateInput>();
             foreach(IWebElement tile in tiles)
@@ -88,8 +93,8 @@ namespace Bot2048.Automating
                 #region Parse row / column
                 string positionClass = classes[2];
                 string[] positionChunks = positionClass.Split('-');
-                int col = 4 - int.Parse(positionChunks[2]);
-                int row = int.Parse(positionChunks[3]) - 1;
+                int col = int.Parse(positionChunks[2]) - 1;
+                int row = 4 - int.Parse(positionChunks[3]);
                 #endregion
 
                 GridUpdateInput input = new GridUpdateInput()

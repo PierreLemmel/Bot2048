@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Bot2048.Core;
 using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
@@ -23,6 +24,7 @@ namespace Bot2048.Automating
         }
 
         private readonly IConfiguration configuration;
+        private string pathToDrivers = MoreReflection.GetCurrentAssemblyDirectory();
 
         private IReadOnlyDictionary<string, Func<IWebDriver>> driverFactoriesMap;
 
@@ -52,10 +54,29 @@ namespace Bot2048.Automating
             return driver;
         }
 
-        private IWebDriver BuildOperaDriver() => new OperaDriver();
-        private IWebDriver BuildChromeDriver() => new ChromeDriver();
-        private IWebDriver BuildFirefoxDriver() => new FirefoxDriver();
-        private IWebDriver BuildEdgeDriver() => new EdgeDriver();
-        private IWebDriver BuildIEDriver() => new InternetExplorerDriver();
+        private IWebDriver BuildOperaDriver()
+        {
+            return new OperaDriver(pathToDrivers);
+        }
+
+        private IWebDriver BuildChromeDriver()
+        {
+            return new ChromeDriver(pathToDrivers);
+        }
+
+        private IWebDriver BuildFirefoxDriver()
+        {
+            return new FirefoxDriver(pathToDrivers);
+        }
+
+        private IWebDriver BuildEdgeDriver()
+        {
+            return new EdgeDriver(pathToDrivers);
+        }
+
+        private IWebDriver BuildIEDriver()
+        {
+            return new InternetExplorerDriver(pathToDrivers);
+        }
     }
 }
