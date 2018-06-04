@@ -3,6 +3,7 @@
     public enum CellValue : int
     {
         Empty = 0,
+
         Value2 = 2,
         Value4 = 4,
         Value8 = 8,

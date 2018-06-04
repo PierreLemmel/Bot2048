@@ -3,7 +3,6 @@ using Bot2048.Model;
 using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
