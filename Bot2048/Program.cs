@@ -44,9 +44,9 @@ namespace Bot2048
                         Direction nextDirection = decisionMaker.ChoseDirection(grid);
                         Print($"Moving {nextDirection}");
                         await controler.NextStep(nextDirection);
-
-                        watch.Stop();
                     }
+
+                    watch.Stop();
 
                     long duration = watch.ElapsedMilliseconds;
                     int score = controler.ReadScore();

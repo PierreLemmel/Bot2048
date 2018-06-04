@@ -64,7 +64,10 @@ namespace Bot2048.Logic
             // No cells -> No movements
             if (column.All(cell => cell.IsEmpty()))
                 return false;
-            // Cells + empty space (except last cell) -> Movement possible
+
+            bool oneEmpty = false;
+            bool allEmpty = true;
+            // Check if there is an empty cell to move
             else if (column.Skip(1).Any(cell => cell.IsEmpty()))
                 return true;
             else
