@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Bot2048.Core;
 using Bot2048.Model;
 
 namespace Bot2048.Logic
@@ -8,6 +9,8 @@ namespace Bot2048.Logic
     {
         public bool CanMoveLeft(Grid grid)
         {
+            Check.NotNull(grid);
+
             return grid.Rows.Any(row => CanMoveLeft(row));
         }
 
@@ -32,6 +35,8 @@ namespace Bot2048.Logic
 
         public bool CanMoveRight(Grid grid)
         {
+            Check.NotNull(grid);
+
             return grid.Rows.Any(row => CanMoveRight(row));
         }
 
@@ -56,6 +61,8 @@ namespace Bot2048.Logic
 
         public bool CanMoveDown(Grid grid)
         {
+            Check.NotNull(grid);
+
             return grid.Columns.Any(col => CanMoveDown(col));
         }
 
@@ -64,9 +71,6 @@ namespace Bot2048.Logic
             // No cells -> No movements
             if (column.All(cell => cell.IsEmpty()))
                 return false;
-
-            bool oneEmpty = false;
-            bool allEmpty = true;
             // Check if there is an empty cell to move
             else if (column.Skip(1).Any(cell => cell.IsEmpty()))
                 return true;
@@ -83,6 +87,8 @@ namespace Bot2048.Logic
 
         public bool CanMoveUp(Grid grid)
         {
+            Check.NotNull(grid);
+
             return grid.Columns.Any(col => CanMoveUp(col));
         }
 

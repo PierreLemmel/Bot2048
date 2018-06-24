@@ -9,18 +9,18 @@ namespace Bot2048.Model
         public GridColumnCollection Columns { get; }
         public GridRowCollection Rows { get; }
 
-        public Grid()
+        public Grid() : this(new CellValue[4, 4]) { }
+
+        public Grid(CellValue[,] cells)
         {
-            cells = new CellValue[4, 4];
+            if (cells is null) throw new ArgumentNullException(nameof(cells));
+            if (cells.GetLength(0) != 4) throw new ArgumentException(nameof(cells));
+            if (cells.GetLength(1) != 4) throw new ArgumentException(nameof(cells));
+
+            this.cells = cells;
 
             Columns = new GridColumnCollection(this);
             Rows = new GridRowCollection(this);
-        }
-
-        private Grid(Grid other)
-        {
-            CellValue[,] values = (CellValue[,])other.cells.Clone();
-            cells = values;
         }
 
         public CellValue this[int col, int row]
@@ -38,11 +38,6 @@ namespace Bot2048.Model
                     cells[i, j] = CellValue.Empty;
                 }
             }
-        }
-
-        public Grid Clone()
-        {
-            return new Grid(this);
         }
     }
 }
